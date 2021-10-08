@@ -33,11 +33,61 @@ function createEmployeeRecords(arrOfArrs){
     }
 
     function createTimeInEvent(timeString){
+let [date, hour] = timeString.split(' ')
 
-        this.timeInEvents.push({type:"TimeIn", date:timeString.split(" ")[0], 
-        hour:parseInt(timeString.split(" ")[1])})
-     
-     
-     }
-      createTimeInEvent.call(bpRecord, timeString)
-   
+        this.timeInEvents.push({
+            type:"TimeIn", 
+            date:date, 
+            hour:parseInt(hour)
+     })
+     return this
+    }
+
+    function createTimeOutEvent(timeString){
+        let [date, hour] = timeString.split(' ')
+        
+                this.timeOutEvents.push({
+                    type:"TimeOut", 
+                    date:date, 
+                    hour:parseInt(hour)
+             })
+             return this
+            }
+
+            function hoursWorkedOnDate(dateMatch){ 
+                const end = this.timeOutEvents.find(element => {
+                   return element.date === dateMatch
+                })
+                
+                
+                const start = this.timeInEvents.find(element => {
+                   return element.date === dateMatch
+                })
+                
+                return (end.hour - start.hour) / 100
+                  
+            }
+
+                function wagesEarnedOnDate(dateMatch){
+
+                    return hoursWorkedOnDate.call(this, dateMatch) * this.payPerHour
+                       
+                }
+
+
+                function calculatePayroll(array){
+                    let totalPay = 0
+                    let newArr = array.map(employee => allWagesFor(employee))
+                    newArr.forEach(num => totalPay +=num)
+                    return totalPay
+        
+                }
+
+                function findEmployeeByFirstName(collection){
+console.log(collection)
+                    
+                   collection.firstName.find(element => {
+                        return element.firstName === "Loki"
+                    })
+                    console.log(person.firstName)
+                }
