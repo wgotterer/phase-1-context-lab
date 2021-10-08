@@ -21,3 +21,23 @@ const allWagesFor = function () {
     return payable
 }
 
+
+function createEmployeeRecord(array){
+    return {firstName: array[0], familyName:array[1], 
+    title:array[2], payPerHour:array[3], timeInEvents:[], timeOutEvents:[]}
+    
+}
+
+function createEmployeeRecords(arrOfArrs){
+    return  arrOfArrs.map(createEmployeeRecord)
+    }
+
+    function createTimeInEvent(timeString){
+
+        this.timeInEvents.push({type:"TimeIn", date:timeString.split(" ")[0], 
+        hour:parseInt(timeString.split(" ")[1])})
+     
+     
+     }
+      createTimeInEvent.call(bpRecord, timeString)
+   
